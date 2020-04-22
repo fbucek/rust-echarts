@@ -1,0 +1,14 @@
+[package]
+name = "echarts"
+version = "0.1.0"
+authors = ["Filip Bucek <fbucek@invloop.cz>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+serde = "1.0"
+
+[target.'cfg(all(target_arch = "wasm32", not(cargo_web)))'.dependencies]
+wasm-bindgen = { version = "0.2", features = ["serde-serialize" ] }
+js-sys = "0.3"
