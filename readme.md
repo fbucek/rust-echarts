@@ -1,3 +1,4 @@
+
 # Test project
 
-It is used just for testing github.com
+[![pipeline status](https://github.com/fbucek/test/workflows/rust/badge.svg)](https://github.com/fbucek/test/)
