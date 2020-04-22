@@ -15,11 +15,6 @@
 use wasm_bindgen::{prelude::wasm_bindgen, JsValue};
 use serde::{Serialize, Deserialize};
 
-pub trait EChart {
-    fn line_data() -> (js_sys::Array, js_sys::Array );
-}
-
-
 #[wasm_bindgen(raw_module = "/html/js/echart-line.js")]
 extern "C" {
     pub fn show_chart(class_id: JsValue, x_data: js_sys::Array, y_data: js_sys::Array);
