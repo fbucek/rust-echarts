@@ -13,7 +13,7 @@ crate-type = ["cdylib", "rlib"]
 serde = "1.0"
 serde_derive = "1"
 
-[target.'cfg(all(target_arch = "wasm32", not(cargo_web)))'.dependencies]
+# problem with rust-analyzer -> [target.'cfg(all(target_arch = "wasm32", not(cargo_web)))'.dependencies]
 wasm-bindgen = { version = "0.2", features = ["serde-serialize" ] }
 js-sys = "0.3"
 

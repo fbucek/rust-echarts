@@ -1,5 +1,6 @@
 /// Echart is wrapper arount javascript library echarts
 /// 
+pub mod iso;
 pub mod echarts;
 pub use echarts::*;
 
