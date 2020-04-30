@@ -1,27 +1,29 @@
-/// Echart module 
-/// 
+/// Echart module
+///
 /// # TODO move to server-api
-/// 
+///
 /// * [ ] appending data on fly https://www.echartsjs.com/examples/en/editor.html?c=linesGL-ny&gl=1
-/// 
+///
 /// ```
 /// myChart.appendData({
 ///   seriesIndex: 0,
 ///   data: data
 /// });
-/// 
+///
 /// Can use
 ///
 use wasm_bindgen::{prelude::wasm_bindgen, JsValue};
-use serde::{Serialize, Deserialize};
 
 #[wasm_bindgen(raw_module = "/html/js/echart-line.js")]
 extern "C" {
     pub fn show_chart(class_id: JsValue, x_data: js_sys::Array, y_data: js_sys::Array);
-    pub fn show_chart_with_series(class_id: JsValue, x_data: Vec<JsValue>, data_series: Vec<JsValue>);
+    pub fn show_chart_with_series(
+        class_id: JsValue,
+        x_data: Vec<JsValue>,
+        data_series: Vec<JsValue>,
+    );
     pub fn show_chart_with_option(class_id: JsValue, option: JsValue);
 }
-
 
 pub struct Chart {
     pub id: String,
@@ -30,7 +32,10 @@ pub struct Chart {
 
 impl Chart {
     pub fn new<T: Into<String>>(id: T) -> Self {
-        Chart { id: id.into(), opt: Opt::default() }
+        Chart {
+            id: id.into(),
+            opt: Opt::default(),
+        }
     }
     pub fn show(&self) {
         let class_id = JsValue::from(&self.id);
@@ -53,7 +58,6 @@ impl Chart {
     }
 }
 
-
 #[derive(Serialize, Default, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct Opt {
@@ -66,13 +70,12 @@ pub struct Opt {
     animation: bool,
 }
 
-
 // #[wasm_bindgen]
 #[derive(Serialize, Default, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct Serie {
     pub name: String,
-    pub data: Vec<f32>, 
+    pub data: Vec<f32>,
     pub r#type: String,
     pub smooth: Option<bool>,
 }
@@ -80,7 +83,7 @@ pub struct Serie {
 #[derive(Serialize, Default, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct Legend {
-    pub data: Vec<String>
+    pub data: Vec<String>,
 }
 
 #[derive(Serialize, Clone)]
@@ -94,9 +97,7 @@ impl Default for ToolTip {
     fn default() -> Self {
         ToolTip {
             trigger: "axis".to_string(),
-            axis_pointer: AxisPointer {
-                animation: false,
-            }
+            axis_pointer: AxisPointer { animation: false },
         }
     }
 }
@@ -106,7 +107,6 @@ impl Default for ToolTip {
 pub struct AxisPointer {
     pub animation: bool,
 }
-
 
 #[derive(Serialize, Default, Clone)]
 pub struct XAxis {
@@ -121,7 +121,6 @@ pub struct YAxis {
     #[serde(default = "value")]
     r#type: String,
 }
-
 
 #[derive(Serialize, Clone)]
 pub struct DataZoom {
@@ -143,4 +142,3 @@ impl Default for DataZoom {
         }
     }
 }
-

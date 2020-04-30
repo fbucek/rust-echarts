@@ -1,4 +1,3 @@
-
 pub fn iso_to_name(iso: &str) -> &str {
     match iso {
         "AF" => "Afghanistan",
@@ -173,7 +172,6 @@ pub fn iso_to_name(iso: &str) -> &str {
         _ => "Undefined",
     }
 }
-
 
 pub fn name_to_iso(name: &str) -> &str {
     match name {
@@ -350,13 +348,11 @@ pub fn name_to_iso(name: &str) -> &str {
     }
 }
 
-
 #[cfg(test)]
 mod tests {
     use super::*;
     use wasm_bindgen_test::*;
     wasm_bindgen_test::wasm_bindgen_test_configure!(run_in_browser);
-
 
     #[wasm_bindgen_test]
     fn iso_to_name_test() {
@@ -364,7 +360,3 @@ mod tests {
         assert_eq!(iso_to_name("CZ"), "Czech Rep.");
     }
 }
-
-
-
-
